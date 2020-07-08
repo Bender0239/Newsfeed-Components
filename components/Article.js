@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Test Article: 1',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Vuvox wakoopa twitter plickers chegg vuvox, octopart sococo nuvvo. Reddit cotweet wakoopa reddit, mobly mozy. Convore zoho xobni jajah zapier, scribd akismet. Skype jajah plaxo yoono, babblely prezi. Plugg voki jajah convore shopify napster, wikia appjet cotweet oooooc reddit, twones empressr zapier blippy. Zoho bubbli joukuu chegg dopplr kiko grockit plugg, ifttt kiko zanga omgpop hipmunk. Handango flickr kosmix blyve xobni mog woopra, chegg twones whrrl babblely ebay, dropio oooooc lala whrrl joyent. Plickers dropio spock napster handango whrrl, jajah cloudera mog bebo. Spotify zinch rovio lala disqus chumby scribd foodzie, omgpop weebly plugg revver ifttt.`,
+
+    secondParagraph: `Webtwo ipsum yoono waze zimbra movity dopplr zanga, blyve udemy zimbra. Blippy wufoo nuvvo zoosk blippy imeem, chegg convore yammer. Odeo mzinga heroku octopart, eskobo chegg. Blippy cloudera chegg insala hojoki dogster, squidoo mozy voki zanga spock, mzinga handango wakoopa jabber.`,
+
+    thirdParagraph: `Orkut spock zapier hulu zimbra knewton, eduvant airbnb jabber movity. Hojoki gsnap chumby lijit geni, xobni trulia jibjab kaboodle, mzinga omgpop eduvant. Wufoo xobni zanga, oooj. Twitter appjet ebay dopplr lijit dropio, handango shopify zooomr qeyno palantir heroku, sifteo gsnap elgg ning. Kippt cotweet akismet insala prezi, gsnap scribd joost. Handango eskobo appjet zoho, convore.`
   }
 ];
 
@@ -111,3 +120,44 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+const articles = document.querySelector('.articles')
+
+function makeArticle(articleData) {
+  
+  const article = document.createElement('div')
+  const title = document.createElement('h2')
+  const date = document.createElement('p')
+  const firstP = document.createElement('p')
+  const secondP = document.createElement('p')
+  const thirdP = document.createElement('p')
+  const span = document.createElement('span')
+
+  article.classList.add('article')
+  date.classList.add('date')
+  span.classList.add('expandButton')
+
+  title.textContent = articleData.title
+  date.textContent = articleData.date
+  firstP.textContent = articleData.firstParagraph
+  secondP.textContent = articleData.secondParagraph
+  thirdP.textContent = articleData.thirdParagraph
+  span.textContent = '+'
+
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(firstP)
+  article.appendChild(secondP)
+  article.appendChild(thirdP)
+  article.appendChild(span)
+  
+  span.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+
+  return article
+}
+
+data.forEach(obj => {
+  articles.appendChild(makeArticle(obj))
+})
+
